@@ -1,0 +1,19 @@
+- name: yum configuration playbook
+  import_playbook: yum_config.yml
+
+- name: Webserver Playbook
+  import_playbook: webserver.yml
+
+- name: LoadBalancer Playbook
+  import_playbook: LoadBalancer.yml
+
+- name: 
+- hosts: master
+  tasks:
+          - name: connection check report
+            shell: hadoop dfsadmin -report | less
+            register: hadoop_report
+          
+          - name: HDFS cluster connection report
+            debug:
+                    var: hadoop_report
